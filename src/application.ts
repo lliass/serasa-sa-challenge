@@ -10,6 +10,7 @@ import { jwtAuthMiddleware } from './shared/middlewares/jwt-auth/index';
 import { registerUserController } from './apps/user/use-cases/register-user/index';
 import { userLoginController } from './apps/user/use-cases/user-login/index';
 import { healthCheckController } from './apps/health-check/index';
+import { createProducerUserController } from './apps/producer/use-cases/create-producer/index';
 
 const expressJson = json();
 
@@ -33,6 +34,7 @@ export default class Application implements IApplication {
     healthCheckController,
     registerUserController,
     userLoginController,
+    createProducerUserController,
   ];
   private configurations: ApplicationConfigurations = {
     corsSpecification: { origin: apiVariables.allowedDomains.split(',') },

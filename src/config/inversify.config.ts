@@ -14,7 +14,7 @@ import {
 } from '../infrastructure/logger/interfaces';
 import LoggerInfra from '../infrastructure/logger/logger.infra';
 
-// Use Cases Imports
+// Use Cases/Controllers Imports
 import {
   IRegisterUserUseCase,
   REGISTER_USER_USE_CASE_TYPE,
@@ -28,6 +28,12 @@ import {
 import UserLoginUseCase from '../apps/user/use-cases/user-login/login.use-case';
 import UserLoginController from '../apps/user/use-cases/user-login/login.controller';
 import HealthCheckController from '../apps/health-check/health-check.controller';
+import {
+  ICreateProducerUseCase,
+  CREATE_PRODUCER_USE_CASE_TYPE,
+} from '../apps/producer/use-cases/create-producer/interfaces';
+import CreateProducerUseCase from '../apps/producer/use-cases/create-producer/create-producer.use-case';
+import CreateProducerController from '../apps/producer/use-cases/create-producer/create-producer.controller';
 
 // Database Imports
 import {
@@ -35,6 +41,11 @@ import {
   USER_REPOSITORY_TYPE,
 } from '../shared/gateways/database/user/Iuser.repository';
 import UserRepository from '../shared/gateways/database/user/implementations/user.repository';
+import {
+  IProducerRepository,
+  PRODUCER_REPOSITORY_TYPE,
+} from '../shared/gateways/database/producer/Iproducer.repository';
+import ProducerRepository from '../shared/gateways/database/producer/implementations/producer.repository';
 
 // Middleware Imports
 import JwtAuthMiddleware from '../shared/middlewares/jwt-auth/jwt-auth.middleware';
@@ -47,7 +58,7 @@ container.bind<ValidatePipeInfra>(ValidatePipeInfra).toSelf();
 container.bind<ICryptoInfra>(CRYPTO_INFRA_TYPE).to(CryptoInfra);
 container.bind<ILoggerInfra>(LOGGER_INFRA_TYPE).to(LoggerInfra);
 
-// Use Case Resolvers
+// Use Case/Controller Resolvers
 container
   .bind<IRegisterUserUseCase>(REGISTER_USER_USE_CASE_TYPE)
   .to(RegisterUserUseCase);
@@ -57,9 +68,16 @@ container
   .to(UserLoginUseCase);
 container.bind<UserLoginController>(UserLoginController).toSelf();
 container.bind<HealthCheckController>(HealthCheckController).toSelf();
+container
+  .bind<ICreateProducerUseCase>(CREATE_PRODUCER_USE_CASE_TYPE)
+  .to(CreateProducerUseCase);
+container.bind<CreateProducerController>(CreateProducerController).toSelf();
 
 // Database Resolvers
 container.bind<IUserRepository>(USER_REPOSITORY_TYPE).to(UserRepository);
+container
+  .bind<IProducerRepository>(PRODUCER_REPOSITORY_TYPE)
+  .to(ProducerRepository);
 
 // Middleware Resolvers
 container.bind<JwtAuthMiddleware>(JwtAuthMiddleware).toSelf();

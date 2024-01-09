@@ -1,7 +1,7 @@
 import { ControllerConfiguration } from '../../../common/interfaces/controller.interface';
 
-const authControllerConfig: ControllerConfiguration = {
+const userControllerConfig: ControllerConfiguration = {
   baseEndPoint: 'user',
 };
 
-export default authControllerConfig;
+export default userControllerConfig;
