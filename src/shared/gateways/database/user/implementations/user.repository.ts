@@ -13,7 +13,6 @@ export default class UserRepository implements IUserRepository {
   }
 
   async saveOne(payload: Partial<User>): Promise<User> {
-    console.log();
     const result = await this.repository.save(payload);
 
     return result;

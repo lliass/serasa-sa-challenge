@@ -3,7 +3,7 @@ import { getStatusCode } from 'http-status-codes';
 import {
   ControllerSpecifications,
   IController,
-} from '../../../../shared/interfaces/controller.interface';
+} from '../../../common/interfaces/controller.interface';
 import { UserLoginRequestDTO } from './login.dto';
 import { inject, injectable } from 'inversify';
 import HttpErrorInfra from '../../../../infrastructure/handlers/http-erro/http.error.infra';

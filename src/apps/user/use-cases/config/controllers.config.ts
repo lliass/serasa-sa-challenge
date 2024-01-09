@@ -1,4 +1,4 @@
-import { ControllerConfiguration } from '../../../../shared/interfaces/controller.interface';
+import { ControllerConfiguration } from '../../../common/interfaces/controller.interface';
 
 const authControllerConfig: ControllerConfiguration = {
   baseEndPoint: 'user',

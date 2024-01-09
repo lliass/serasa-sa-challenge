@@ -1,18 +1,29 @@
 import 'reflect-metadata';
-import express, { Express, Router } from 'express';
+import express, { Express, Router, json } from 'express';
 import cors from 'cors';
+import { loggerInfra } from './infrastructure/logger/index';
 import { apiVariables } from './config/variables.config';
-import {
-  ApplicationConfigurations,
-  IApplication,
-} from './shared/interfaces/application.interface';
-import { IController } from './shared/interfaces/controller.interface';
-import { HTTP_METHODS_ENUM } from './shared/enums/http.enum';
+import { IController } from './apps/common/interfaces/controller.interface';
+import { HTTP_METHODS_ENUM } from './apps/common/enums/http.enum';
 import JwtAuthMiddleware from './shared/middlewares/jwt-auth/jwt-auth.middleware';
 import { jwtAuthMiddleware } from './shared/middlewares/jwt-auth/index';
 import { registerUserController } from './apps/user/use-cases/register-user/index';
 import { userLoginController } from './apps/user/use-cases/user-login/index';
 import { healthCheckController } from './apps/health-check/index';
+
+const expressJson = json();
+
+export interface ApplicationConfigurations {
+  corsSpecification: {
+    origin: string[];
+  };
+  defaultCommunication: typeof expressJson;
+  prefix: string;
+}
+
+export interface IApplication {
+  start(): void;
+}
 
 export default class Application implements IApplication {
   private engine: Express = express();
@@ -43,6 +54,8 @@ export default class Application implements IApplication {
     this.engine.use(`/${prefix}`, routes);
 
     this.engine.listen(+apiVariables.port || 3000);
+
+    loggerInfra.dynamicMessage({ message: 'Api has been initialized' });
   }
 
   private renderRoutes(): void {
@@ -71,11 +84,11 @@ export default class Application implements IApplication {
         }
       }
 
-      console.log({
+      loggerInfra.dynamicMessage({
         message: 'Routes for api has defined',
       });
     } catch (error) {
-      console.error({
+      loggerInfra.error({
         errorMessage: 'An error on render routes for api',
         errorStack: error,
       });

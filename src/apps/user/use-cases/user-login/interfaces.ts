@@ -1,4 +1,4 @@
-import { IUseCase } from '../../../../shared/interfaces/use-case.interface';
+import { IUseCase } from '../../../common/interfaces/use-case.interface';
 import { UserLoginRequestDTO, UserLoginResponseDTO } from './login.dto';
 
 interface IUserLoginUseCase extends IUseCase {

@@ -58,8 +58,10 @@
     "inversify": "^6.0.2",
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
+    "moment-timezone": "^0.5.44",
     "pg": "^8.11.3",
     "reflect-metadata": "^0.2.1",
-    "typeorm": "^0.3.19"
+    "typeorm": "^0.3.19",
+    "winston": "^3.11.0"
   }
 }

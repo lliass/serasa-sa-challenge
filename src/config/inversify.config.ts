@@ -8,6 +8,11 @@ import {
   ICryptoInfra,
 } from '../infrastructure/crypto/Icrypto.infra';
 import CryptoInfra from '../infrastructure/crypto/implementation/crypto.infra';
+import {
+  ILoggerInfra,
+  LOGGER_INFRA_TYPE,
+} from '../infrastructure/logger/interfaces';
+import LoggerInfra from '../infrastructure/logger/logger.infra';
 
 // Use Cases Imports
 import {
@@ -40,6 +45,7 @@ const container = new Container();
 container.bind<HttpErrorInfra>(HttpErrorInfra).toSelf();
 container.bind<ValidatePipeInfra>(ValidatePipeInfra).toSelf();
 container.bind<ICryptoInfra>(CRYPTO_INFRA_TYPE).to(CryptoInfra);
+container.bind<ILoggerInfra>(LOGGER_INFRA_TYPE).to(LoggerInfra);
 
 // Use Case Resolvers
 container

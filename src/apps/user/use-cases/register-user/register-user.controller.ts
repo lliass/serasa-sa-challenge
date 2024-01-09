@@ -3,7 +3,7 @@ import { getStatusCode } from 'http-status-codes';
 import {
   ControllerSpecifications,
   IController,
-} from '../../../../shared/interfaces/controller.interface';
+} from '../../../common/interfaces/controller.interface';
 import { PostRegisterUserRequestDTO } from './register-user.dto';
 import { inject, injectable } from 'inversify';
 import HttpErrorInfra from '../../../../infrastructure/handlers/http-erro/http.error.infra';
@@ -44,7 +44,6 @@ export default class RegisterUserController implements IController {
 
       return response.status(getStatusCode('Created')).send();
     } catch (error) {
-      console.log(error);
       return this.httpError.handler(response, error);
     }
   }

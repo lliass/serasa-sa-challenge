@@ -1,4 +1,4 @@
-import { IUseCase } from '../../../../shared/interfaces/use-case.interface';
+import { IUseCase } from '../../../common/interfaces/use-case.interface';
 import { PostRegisterUserRequestDTO } from './register-user.dto';
 
 interface IRegisterUserUseCase extends IUseCase {
