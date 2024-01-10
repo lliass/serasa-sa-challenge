@@ -11,6 +11,7 @@ import { registerUserController } from './apps/user/use-cases/register-user/inde
 import { userLoginController } from './apps/user/use-cases/user-login/index';
 import { healthCheckController } from './apps/health-check/index';
 import { createProducerUserController } from './apps/producer/use-cases/create-producer/index';
+import { listProducerUserController } from './apps/producer/use-cases/list-producer/index';
 
 const expressJson = json();
 
@@ -35,6 +36,7 @@ export default class Application implements IApplication {
     registerUserController,
     userLoginController,
     createProducerUserController,
+    listProducerUserController,
   ];
   private configurations: ApplicationConfigurations = {
     corsSpecification: { origin: apiVariables.allowedDomains.split(',') },

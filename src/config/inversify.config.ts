@@ -34,6 +34,12 @@ import {
 } from '../apps/producer/use-cases/create-producer/interfaces';
 import CreateProducerUseCase from '../apps/producer/use-cases/create-producer/create-producer.use-case';
 import CreateProducerController from '../apps/producer/use-cases/create-producer/create-producer.controller';
+import {
+  IListProducerUseCase,
+  LIST_PRODUCER_USE_CASE_TYPE,
+} from '../apps/producer/use-cases/list-producer/interfaces';
+import ListProducerUseCase from '../apps/producer/use-cases/list-producer/list-producer.use-case';
+import ListProducerController from '../apps/producer/use-cases/list-producer/list-producer.controller';
 
 // Database Imports
 import {
@@ -72,6 +78,10 @@ container
   .bind<ICreateProducerUseCase>(CREATE_PRODUCER_USE_CASE_TYPE)
   .to(CreateProducerUseCase);
 container.bind<CreateProducerController>(CreateProducerController).toSelf();
+container
+  .bind<IListProducerUseCase>(LIST_PRODUCER_USE_CASE_TYPE)
+  .to(ListProducerUseCase);
+container.bind<ListProducerController>(ListProducerController).toSelf();
 
 // Database Resolvers
 container.bind<IUserRepository>(USER_REPOSITORY_TYPE).to(UserRepository);

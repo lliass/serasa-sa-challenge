@@ -5,6 +5,24 @@ import { BadRequest } from 'http-errors';
 
 @injectable()
 export default class ValidatePipeInfra {
+  async validateParams(params: {
+    queryParams: typeof request.params;
+    RequestDTO: new () => any;
+  }): Promise<void> {
+    const { queryParams, RequestDTO } = params;
+
+    const requestDTO = new RequestDTO();
+
+    Object.assign(requestDTO, queryParams);
+
+    const errors = await validate(requestDTO);
+
+    if (errors.length > 0)
+      throw new BadRequest(
+        'Params must be sent or are out of required formatting',
+      );
+  }
+
   async validateQueryParams(params: {
     queryParams: typeof request.query;
     RequestDTO: new () => any;
