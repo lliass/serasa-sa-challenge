@@ -39,13 +39,13 @@ export default class CreateProducerController implements IController {
         RequestDTO: CreateProducerRequestDTO,
       });
 
-      await this.useCase.execute({
+      const newProducer = await this.useCase.execute({
         name,
         cpf,
         cnpj,
       });
 
-      return response.status(getStatusCode('Created')).send();
+      return response.status(getStatusCode('Created')).json(newProducer);
     } catch (error) {
       return this.httpError.handler(response, error);
     }

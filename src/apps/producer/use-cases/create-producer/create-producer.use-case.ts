@@ -1,6 +1,9 @@
 import { ICreateProducerUseCase } from './interfaces';
 import { inject, injectable } from 'inversify';
-import { CreateProducerRequestDTO } from './create-producer.dto';
+import {
+  CreateProducerRequestDTO,
+  CreateProducerResponseDTO,
+} from './create-producer.dto';
 import {
   IProducerRepository,
   PRODUCER_REPOSITORY_TYPE,
@@ -12,7 +15,9 @@ export default class CreateProducerUseCase implements ICreateProducerUseCase {
   @inject(PRODUCER_REPOSITORY_TYPE)
   private producerRepository: IProducerRepository;
 
-  async execute(params: CreateProducerRequestDTO): Promise<void> {
+  async execute(
+    params: CreateProducerRequestDTO,
+  ): Promise<CreateProducerResponseDTO> {
     const { name, cpf, cnpj } = params;
 
     const userFound = await this.producerRepository.findOne({ cpf });
@@ -26,10 +31,12 @@ export default class CreateProducerUseCase implements ICreateProducerUseCase {
     if (userFoundWithTheSameCNPJ)
       throw new BadRequest('CPF or CNPJ already registered');
 
-    await this.producerRepository.saveOne({
+    const newProducer = await this.producerRepository.saveOne({
       name,
       cpf,
       cnpj,
     });
+
+    return newProducer;
   }
 }

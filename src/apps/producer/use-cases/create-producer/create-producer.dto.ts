@@ -19,4 +19,11 @@ class CreateProducerRequestDTO {
   name: string;
 }
 
-export { CreateProducerRequestDTO };
+class CreateProducerResponseDTO {
+  id: number;
+  cpf: string;
+  cnpj?: string;
+  name: string;
+}
+
+export { CreateProducerRequestDTO, CreateProducerResponseDTO };
