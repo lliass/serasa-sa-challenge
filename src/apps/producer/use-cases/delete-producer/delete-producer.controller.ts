@@ -7,7 +7,7 @@ import {
 import { DeleteProducerRequestDTO } from './delete-producer.dto';
 import { inject, injectable } from 'inversify';
 import HttpErrorInfra from '../../../../infrastructure/handlers/http-erro/http.error.infra';
-import controllersConfig from '../config/controllers.config';
+import controllersConfig from '../../config/controllers.config';
 import {
   DELETE_PRODUCER_USE_CASE_TYPE,
   IDeleteProducerUseCase,

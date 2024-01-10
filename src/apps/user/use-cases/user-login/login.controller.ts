@@ -7,7 +7,7 @@ import {
 import { UserLoginRequestDTO } from './login.dto';
 import { inject, injectable } from 'inversify';
 import HttpErrorInfra from '../../../../infrastructure/handlers/http-erro/http.error.infra';
-import controllersConfig from '../config/controllers.config';
+import controllersConfig from '../../config/controllers.config';
 import { USER_LOGIN_USE_CASE_TYPE, IUserLoginUseCase } from './interfaces';
 import ValidatePipeInfra from '../../../../infrastructure/handlers/pipes/validate-pipe.infra';
 
