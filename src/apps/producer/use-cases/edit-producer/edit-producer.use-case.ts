@@ -19,7 +19,10 @@ export default class EditProducerUseCase implements IEditProducerUseCase {
     param: EditProducerRequestParamDTO;
     body: EditProducerRequestBodyDTO;
   }): Promise<void> {
-    const { param, body } = params;
+    const {
+      param,
+      body: { cpf, cnpj, name },
+    } = params;
 
     const producerFound = await this.producerRepository.findOne({
       id: +param.id,
@@ -28,10 +31,10 @@ export default class EditProducerUseCase implements IEditProducerUseCase {
     if (!producerFound)
       throw new NotFound('No producer was found with this identifier');
 
-    if (!!body.cpf) {
+    if (!!cpf) {
       const producerFoundWithTheSameCPF = await this.producerRepository.findOne(
         {
-          cpf: body.cpf,
+          cpf: cpf,
         },
       );
 
@@ -45,7 +48,7 @@ export default class EditProducerUseCase implements IEditProducerUseCase {
 
     await this.producerRepository.updateOne({
       id: +param.id,
-      payload: body,
+      payload: { cpf, cnpj, name },
     });
   }
 }

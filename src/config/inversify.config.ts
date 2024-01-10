@@ -46,6 +46,12 @@ import {
 } from '../apps/producer/use-cases/edit-producer/interfaces';
 import EditProducerUseCase from '../apps/producer/use-cases/edit-producer/edit-producer.use-case';
 import EditProducerController from '../apps/producer/use-cases/edit-producer/edit-producer.controller';
+import {
+  IDeleteProducerUseCase,
+  DELETE_PRODUCER_USE_CASE_TYPE,
+} from '../apps/producer/use-cases/delete-producer/interfaces';
+import DeleteProducerUseCase from '../apps/producer/use-cases/delete-producer/delete-producer.use-case';
+import DeleteProducerController from '../apps/producer/use-cases/delete-producer/delete-producer.controller';
 
 // Database Imports
 import {
@@ -92,6 +98,10 @@ container
   .bind<IEditProducerUseCase>(EDIT_PRODUCER_USE_CASE_TYPE)
   .to(EditProducerUseCase);
 container.bind<EditProducerController>(EditProducerController).toSelf();
+container
+  .bind<IDeleteProducerUseCase>(DELETE_PRODUCER_USE_CASE_TYPE)
+  .to(DeleteProducerUseCase);
+container.bind<DeleteProducerController>(DeleteProducerController).toSelf();
 
 // Database Resolvers
 container.bind<IUserRepository>(USER_REPOSITORY_TYPE).to(UserRepository);

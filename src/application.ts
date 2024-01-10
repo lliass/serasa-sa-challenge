@@ -10,9 +10,10 @@ import { jwtAuthMiddleware } from './shared/middlewares/jwt-auth/index';
 import { registerUserController } from './apps/user/use-cases/register-user/index';
 import { userLoginController } from './apps/user/use-cases/user-login/index';
 import { healthCheckController } from './apps/health-check/index';
-import { createProducerUserController } from './apps/producer/use-cases/create-producer/index';
-import { listProducerUserController } from './apps/producer/use-cases/list-producer/index';
-import { editProducerUserController } from './apps/producer/use-cases/edit-producer/index';
+import { createProducerController } from './apps/producer/use-cases/create-producer/index';
+import { listProducerController } from './apps/producer/use-cases/list-producer/index';
+import { editProducerController } from './apps/producer/use-cases/edit-producer/index';
+import { deleteProducerController } from './apps/producer/use-cases/delete-producer/index';
 
 const expressJson = json();
 
@@ -36,9 +37,10 @@ export default class Application implements IApplication {
     healthCheckController,
     registerUserController,
     userLoginController,
-    createProducerUserController,
-    listProducerUserController,
-    editProducerUserController,
+    createProducerController,
+    listProducerController,
+    editProducerController,
+    deleteProducerController,
   ];
   private configurations: ApplicationConfigurations = {
     corsSpecification: { origin: apiVariables.allowedDomains.split(',') },

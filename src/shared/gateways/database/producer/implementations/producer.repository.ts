@@ -36,4 +36,12 @@ export default class ProducerRepository implements IProducerRepository {
 
     return !!result.affected;
   }
+
+  async deleteOne(params: { id: number }): Promise<boolean> {
+    const { id } = params;
+
+    const result = await this.repository.delete(id);
+
+    return !!result.affected;
+  }
 }

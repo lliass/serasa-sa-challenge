@@ -7,6 +7,7 @@ interface IProducerRepository {
     id: number;
     payload: Partial<IProducer>;
   }): Promise<boolean>;
+  deleteOne(params: { id: number }): Promise<boolean>;
 }
 
 const PRODUCER_REPOSITORY_TYPE = Symbol.for('IProducerRepository');
