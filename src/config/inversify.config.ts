@@ -40,6 +40,12 @@ import {
 } from '../apps/producer/use-cases/list-producer/interfaces';
 import ListProducerUseCase from '../apps/producer/use-cases/list-producer/list-producer.use-case';
 import ListProducerController from '../apps/producer/use-cases/list-producer/list-producer.controller';
+import {
+  IEditProducerUseCase,
+  EDIT_PRODUCER_USE_CASE_TYPE,
+} from '../apps/producer/use-cases/edit-producer/interfaces';
+import EditProducerUseCase from '../apps/producer/use-cases/edit-producer/edit-producer.use-case';
+import EditProducerController from '../apps/producer/use-cases/edit-producer/edit-producer.controller';
 
 // Database Imports
 import {
@@ -82,6 +88,10 @@ container
   .bind<IListProducerUseCase>(LIST_PRODUCER_USE_CASE_TYPE)
   .to(ListProducerUseCase);
 container.bind<ListProducerController>(ListProducerController).toSelf();
+container
+  .bind<IEditProducerUseCase>(EDIT_PRODUCER_USE_CASE_TYPE)
+  .to(EditProducerUseCase);
+container.bind<EditProducerController>(EditProducerController).toSelf();
 
 // Database Resolvers
 container.bind<IUserRepository>(USER_REPOSITORY_TYPE).to(UserRepository);

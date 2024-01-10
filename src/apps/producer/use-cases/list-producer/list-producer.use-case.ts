@@ -20,11 +20,11 @@ export default class ListProducerUseCase implements IListProducerUseCase {
   ): Promise<ListProducerResponseDTO> {
     const { id } = params;
 
-    const userFound = await this.producerRepository.findOne({ id: +id });
+    const producerFound = await this.producerRepository.findOne({ id: +id });
 
-    if (!userFound)
+    if (!producerFound)
       throw new NotFound('No producer was found with this identifier');
 
-    return userFound;
+    return producerFound;
   }
 }

@@ -20,15 +20,15 @@ export default class CreateProducerUseCase implements ICreateProducerUseCase {
   ): Promise<CreateProducerResponseDTO> {
     const { name, cpf, cnpj } = params;
 
-    const userFound = await this.producerRepository.findOne({ cpf });
+    const producerFound = await this.producerRepository.findOne({ cpf });
 
-    if (!!userFound) throw new BadRequest('CPF or CNPJ already registered');
+    if (!!producerFound) throw new BadRequest('CPF or CNPJ already registered');
 
-    const userFoundWithTheSameCNPJ = !!cnpj
+    const producerFoundWithTheSameCNPJ = !!cnpj
       ? !!(await this.producerRepository.findOne({ cnpj }))
       : false;
 
-    if (userFoundWithTheSameCNPJ)
+    if (producerFoundWithTheSameCNPJ)
       throw new BadRequest('CPF or CNPJ already registered');
 
     const newProducer = await this.producerRepository.saveOne({
