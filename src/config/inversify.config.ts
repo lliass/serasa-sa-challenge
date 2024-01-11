@@ -52,6 +52,12 @@ import {
 } from '../apps/producer/use-cases/delete-producer/interfaces';
 import DeleteProducerUseCase from '../apps/producer/use-cases/delete-producer/delete-producer.use-case';
 import DeleteProducerController from '../apps/producer/use-cases/delete-producer/delete-producer.controller';
+import {
+  ICreateFarmUseCase,
+  CREATE_FARM_USE_CASE_TYPE,
+} from '../apps/producer/use-cases/create-farm/interfaces';
+import CreateFarmUseCase from '../apps/producer/use-cases/create-farm/create-farm.use-case';
+import CreateFarmController from '../apps/producer/use-cases/create-farm/create-farm.controller';
 
 // Database Imports
 import {
@@ -64,6 +70,17 @@ import {
   PRODUCER_REPOSITORY_TYPE,
 } from '../shared/gateways/database/producer/Iproducer.repository';
 import ProducerRepository from '../shared/gateways/database/producer/implementations/producer.repository';
+import {
+  IFarmRepository,
+  FARM_REPOSITORY_TYPE,
+} from '../shared/gateways/database/farm/Ifarm.repository';
+import FarmRepository from '../shared/gateways/database/farm/implementations/farm.repository';
+
+import {
+  ICropTypeRepository,
+  CROP_TYPE_REPOSITORY_TYPE,
+} from '../shared/gateways/database/crop-type/Icrop-type.repository';
+import CropTypeRepository from '../shared/gateways/database/crop-type/implementations/crop-type.repository';
 
 // Middleware Imports
 import JwtAuthMiddleware from '../shared/middlewares/jwt-auth/jwt-auth.middleware';
@@ -102,12 +119,20 @@ container
   .bind<IDeleteProducerUseCase>(DELETE_PRODUCER_USE_CASE_TYPE)
   .to(DeleteProducerUseCase);
 container.bind<DeleteProducerController>(DeleteProducerController).toSelf();
+container
+  .bind<ICreateFarmUseCase>(CREATE_FARM_USE_CASE_TYPE)
+  .to(CreateFarmUseCase);
+container.bind<CreateFarmController>(CreateFarmController).toSelf();
 
 // Database Resolvers
 container.bind<IUserRepository>(USER_REPOSITORY_TYPE).to(UserRepository);
 container
   .bind<IProducerRepository>(PRODUCER_REPOSITORY_TYPE)
   .to(ProducerRepository);
+container.bind<IFarmRepository>(FARM_REPOSITORY_TYPE).to(FarmRepository);
+container
+  .bind<ICropTypeRepository>(CROP_TYPE_REPOSITORY_TYPE)
+  .to(CropTypeRepository);
 
 // Middleware Resolvers
 container.bind<JwtAuthMiddleware>(JwtAuthMiddleware).toSelf();
