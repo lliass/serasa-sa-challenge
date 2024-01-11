@@ -3,6 +3,9 @@ import { IPlantedCrop } from './Iplanted-crop.entity';
 interface IPlantedCropRepository {
   saveOne(payload: Partial<IPlantedCrop>): Promise<IPlantedCrop>;
   findMany(payload: Partial<IPlantedCrop>): Promise<IPlantedCrop[] | []>;
+  findManyByFarmIds(params: {
+    farmIds: number[];
+  }): Promise<IPlantedCrop[] | []>;
   deleteMany(params: { ids: number[] }): Promise<boolean>;
 }
 

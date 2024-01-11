@@ -1,4 +1,4 @@
-import { Repository } from 'typeorm';
+import { Repository, In } from 'typeorm';
 import { PostgresDataSource } from '../../../../../infrastructure/persistence/postgres/data-source';
 import { Farm } from './farm.entity';
 import { IFarmRepository } from '../Ifarm.repository';
@@ -26,21 +26,18 @@ export default class FarmRepository implements IFarmRepository {
     return result;
   }
 
-  async updateOne(params: {
-    id: number;
-    payload: Partial<Farm>;
-  }): Promise<boolean> {
-    const { id, payload } = params;
+  async findMany(payload: Partial<Farm>): Promise<Farm[] | []> {
+    const result = await this.repository.find({
+      where: { ...payload },
+    });
 
-    const result = await this.repository.update(id, payload);
-
-    return !!result.affected;
+    return result;
   }
 
-  async deleteOne(params: { id: number }): Promise<boolean> {
-    const { id } = params;
+  async deleteMany(params: { ids: number[] }): Promise<boolean> {
+    const { ids } = params;
 
-    const result = await this.repository.delete(id);
+    const result = await this.repository.delete({ id: In(ids) });
 
     return !!result.affected;
   }

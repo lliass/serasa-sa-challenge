@@ -26,6 +26,18 @@ export default class PlantedCropRepository implements IPlantedCropRepository {
     return result;
   }
 
+  async findManyByFarmIds(params: {
+    farmIds: number[];
+  }): Promise<PlantedCrop[] | []> {
+    const { farmIds } = params;
+
+    const result = await this.repository.find({
+      where: { farm_id: In(farmIds) },
+    });
+
+    return result;
+  }
+
   async deleteMany(params: { ids: number[] }): Promise<boolean> {
     const { ids } = params;
 
