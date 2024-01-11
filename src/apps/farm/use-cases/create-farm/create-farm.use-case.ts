@@ -17,7 +17,7 @@ import {
 import { BadRequest, NotFound } from 'http-errors';
 
 @injectable()
-export default class CreateProducerUseCase implements ICreateFarmUseCase {
+export default class CreateFarmUseCase implements ICreateFarmUseCase {
   @inject(PRODUCER_REPOSITORY_TYPE)
   private producerRepository: IProducerRepository;
 

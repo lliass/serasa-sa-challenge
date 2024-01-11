@@ -55,9 +55,15 @@ import DeleteProducerController from '../apps/producer/use-cases/delete-producer
 import {
   ICreateFarmUseCase,
   CREATE_FARM_USE_CASE_TYPE,
-} from '../apps/producer/use-cases/create-farm/interfaces';
-import CreateFarmUseCase from '../apps/producer/use-cases/create-farm/create-farm.use-case';
-import CreateFarmController from '../apps/producer/use-cases/create-farm/create-farm.controller';
+} from '../apps/farm/use-cases/create-farm/interfaces';
+import CreateFarmUseCase from '../apps/farm/use-cases/create-farm/create-farm.use-case';
+import CreateFarmController from '../apps/farm/use-cases/create-farm/create-farm.controller';
+import {
+  ICreateCropUseCase,
+  CREATE_CROP_USE_CASE_TYPE,
+} from '../apps/farm/use-cases/create-crop/interfaces';
+import CreateCropUseCase from '../apps/farm/use-cases/create-crop/create-crop.use-case';
+import CreateCropController from '../apps/farm/use-cases/create-crop/create-crop.controller';
 
 // Database Imports
 import {
@@ -75,12 +81,16 @@ import {
   FARM_REPOSITORY_TYPE,
 } from '../shared/gateways/database/farm/Ifarm.repository';
 import FarmRepository from '../shared/gateways/database/farm/implementations/farm.repository';
-
 import {
   ICropTypeRepository,
   CROP_TYPE_REPOSITORY_TYPE,
 } from '../shared/gateways/database/crop-type/Icrop-type.repository';
 import CropTypeRepository from '../shared/gateways/database/crop-type/implementations/crop-type.repository';
+import {
+  IPlantedCropRepository,
+  PLANTED_CROP_REPOSITORY_TYPE,
+} from '../shared/gateways/database/planted-crop/Iplanted-crop.repository';
+import PlantedCropRepository from '../shared/gateways/database/planted-crop/implementations/planted-crop.repository';
 
 // Middleware Imports
 import JwtAuthMiddleware from '../shared/middlewares/jwt-auth/jwt-auth.middleware';
@@ -123,6 +133,10 @@ container
   .bind<ICreateFarmUseCase>(CREATE_FARM_USE_CASE_TYPE)
   .to(CreateFarmUseCase);
 container.bind<CreateFarmController>(CreateFarmController).toSelf();
+container
+  .bind<ICreateCropUseCase>(CREATE_CROP_USE_CASE_TYPE)
+  .to(CreateCropUseCase);
+container.bind<CreateCropController>(CreateCropController).toSelf();
 
 // Database Resolvers
 container.bind<IUserRepository>(USER_REPOSITORY_TYPE).to(UserRepository);
@@ -133,6 +147,9 @@ container.bind<IFarmRepository>(FARM_REPOSITORY_TYPE).to(FarmRepository);
 container
   .bind<ICropTypeRepository>(CROP_TYPE_REPOSITORY_TYPE)
   .to(CropTypeRepository);
+container
+  .bind<IPlantedCropRepository>(PLANTED_CROP_REPOSITORY_TYPE)
+  .to(PlantedCropRepository);
 
 // Middleware Resolvers
 container.bind<JwtAuthMiddleware>(JwtAuthMiddleware).toSelf();

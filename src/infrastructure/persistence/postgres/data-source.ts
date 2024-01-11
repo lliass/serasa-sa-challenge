@@ -5,6 +5,7 @@ import { User } from '../../../shared/gateways/database/user/implementations/use
 import { Producer } from '../../../shared/gateways/database/producer/implementations/producer.entity';
 import { Farm } from '../../../shared/gateways/database/farm/implementations/farm.entity';
 import { CropType } from '../../../shared/gateways/database/crop-type/implementations/crop-type.entity';
+import { PlantedCrop } from '../../../shared/gateways/database/planted-crop/implementations/planted-crop.entity';
 
 export const PostgresDataSource = new DataSource({
   type: 'postgres',
@@ -14,7 +15,7 @@ export const PostgresDataSource = new DataSource({
   password: postgresVariables.password,
   database: postgresVariables.dbName,
   synchronize: false,
-  entities: [User, Producer, Farm, CropType],
+  entities: [User, Producer, Farm, CropType, PlantedCrop],
   subscribers: [],
   migrations: [],
 });
