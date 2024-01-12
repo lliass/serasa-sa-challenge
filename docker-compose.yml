@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  application:
+    build:
+      context: .
+      dockerfile: dockerfile.application.dev
+    environment:
+      JWT_SECRET_KEY: 8t9f5cDeCAK4h40UQLlRD_xb8A6CL--Rf7Qhs0R6fyKKOt62fkVZMhFv-VaKlYGPagW6gqWstyRPCZ1xGNaPok0IpzbM065kkqwwpE9l1vexYh6e_Dehw_1F7Kiu0-DqWXNpviYd1TSeJA7OvnF_-oFTVklsN17rjmMYcK-o3JM
+      ALLOWED_EMAIL_DOMAINS: serasa,serasa.com
+      ALLOWED_DOMAINS: localhost,127.0.0.1
+      POSTGRES_DB_HOST: database
+      POSTGRES_DB_PORT: 5432
+      POSTGRES_DB_USERNAME: username
+      POSTGRES_DB_PASSWORD: password
+      POSTGRES_DB_NAME: serasa-challenge
+      PORT: 3000
+    ports:
+      - '3000:3000'
+    depends_on:
+      - database
+
+  database:
+    build:
+      context: .
+      dockerfile: dockerfile.database.dev
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: serasa-challenge
+    ports:
+      - '5432:5432'
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:

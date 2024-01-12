@@ -1,0 +1,27 @@
+# Use uma imagem oficial do Node.js como base
+FROM node:14
+
+# Defina o diretório de trabalho dentro do contêiner
+WORKDIR /usr/src/app
+
+# Copie os arquivos de dependência
+COPY package*.json ./
+
+RUN npm install -g typescript
+
+RUN npm install -D @types/node
+
+# Instale as dependências
+RUN npm install
+
+# Copie o restante do código-fonte
+COPY . .
+
+# Build da aplicação TypeScript
+RUN npm run build
+
+# Exponha a porta que a aplicação estará ouvindo
+EXPOSE 3000-3000
+
+# Comando para iniciar a aplicação
+CMD ["npm", "start"]
