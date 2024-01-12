@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { IFarm } from '../Ifarm.entity';
+import { PlantedCrop } from '../../planted-crop/implementations/planted-crop.entity';
 
 @Entity({ name: 'farm' })
 export class Farm implements IFarm {
@@ -26,4 +27,7 @@ export class Farm implements IFarm {
 
   @Column()
   vegetation_total_area: number;
+
+  @OneToMany(() => PlantedCrop, (plantedCrop) => plantedCrop.farm)
+  plantedCrops?: PlantedCrop[];
 }

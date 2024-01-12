@@ -26,6 +26,14 @@ export default class FarmRepository implements IFarmRepository {
     return result;
   }
 
+  async findAll(): Promise<Farm[] | []> {
+    const result = await this.repository.find({
+      relations: ['plantedCrops', 'plantedCrops.cropType'],
+    });
+
+    return result;
+  }
+
   async findMany(payload: Partial<Farm>): Promise<Farm[] | []> {
     const result = await this.repository.find({
       where: { ...payload },

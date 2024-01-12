@@ -65,6 +65,13 @@ import {
 import CreateCropUseCase from '../apps/farm/use-cases/create-crop/create-crop.use-case';
 import CreateCropController from '../apps/farm/use-cases/create-crop/create-crop.controller';
 
+import {
+  IListFarmsUseCase,
+  LIST_FARMS_USE_CASE_TYPE,
+} from '../apps/farm/use-cases/list-farms/interfaces';
+import ListFarmsUseCase from '../apps/farm/use-cases/list-farms/list-farms.use-case';
+import ListFarmsController from '../apps/farm/use-cases/list-farms/list-farms.controller';
+
 // Database Imports
 import {
   IUserRepository,
@@ -137,6 +144,10 @@ container
   .bind<ICreateCropUseCase>(CREATE_CROP_USE_CASE_TYPE)
   .to(CreateCropUseCase);
 container.bind<CreateCropController>(CreateCropController).toSelf();
+container
+  .bind<IListFarmsUseCase>(LIST_FARMS_USE_CASE_TYPE)
+  .to(ListFarmsUseCase);
+container.bind<ListFarmsController>(ListFarmsController).toSelf();
 
 // Database Resolvers
 container.bind<IUserRepository>(USER_REPOSITORY_TYPE).to(UserRepository);

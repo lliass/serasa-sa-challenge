@@ -16,6 +16,7 @@ import { editProducerController } from './apps/producer/use-cases/edit-producer/
 import { deleteProducerController } from './apps/producer/use-cases/delete-producer/index';
 import { createFarmController } from './apps/farm/use-cases/create-farm/index';
 import { createCropController } from './apps/farm/use-cases/create-crop/index';
+import { listFarmsController } from './apps/farm/use-cases/list-farms/index';
 
 const expressJson = json();
 
@@ -45,6 +46,7 @@ export default class Application implements IApplication {
     deleteProducerController,
     createFarmController,
     createCropController,
+    listFarmsController,
   ];
   private configurations: ApplicationConfigurations = {
     corsSpecification: { origin: apiVariables.allowedDomains.split(',') },
