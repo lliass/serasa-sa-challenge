@@ -75,5 +75,9 @@ ou
 ```
 docker-compose down --volumes --rmi all
 ```
+
+- **URL base de desenvolvimento:**
+> http://localhost:3000/api ou http://application:3000/api (url gerada pelo docker network)
+
 > [!IMPORTANT]
 > Apenas lembrando que para usar esses comandos a pessoa desenvolvedora deve estar na pasta raiz do projeto :wink:
