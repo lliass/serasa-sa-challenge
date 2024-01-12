@@ -76,4 +76,4 @@ ou
 docker-compose down --volumes --rmi all
 ```
 > [!IMPORTANT]
-> Apenas lembrando que para usar essas comandos a pessoa desenvolvedora deve estar na pasta raiz do projeto :wink:
+> Apenas lembrando que para usar esses comandos a pessoa desenvolvedora deve estar na pasta raiz do projeto :wink:
