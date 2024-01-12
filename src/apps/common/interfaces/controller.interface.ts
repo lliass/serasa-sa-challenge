@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { HTTP_METHODS_ENUM } from '../enums/http.enum';
-import HttpErrorInfra from '../../infrastructure/handlers/http-erro/http.error.infra';
+import HttpErrorInfra from '../../../infrastructure/handlers/http-erro/http.error.infra';
 import { IUseCase } from './use-case.interface';
-import ValidatePipeInfra from '../../infrastructure/handlers/pipes/validate-pipe.infra';
+import ValidatePipeInfra from '../../../infrastructure/handlers/pipes/validate-pipe.infra';
 
 type ControllerMethods = keyof typeof HTTP_METHODS_ENUM;
 

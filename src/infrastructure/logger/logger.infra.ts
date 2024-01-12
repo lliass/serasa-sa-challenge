@@ -18,7 +18,7 @@ export default class LoggerInfra implements ILoggerInfra {
   constructor() {
     this.logger = createLogger({
       format: combine(
-        label({ label: 'Moni-Thor' }),
+        label({ label: 'Application' }),
         appendTimestamp({ tz: 'America/Sao_Paulo' }),
         prettyPrint(),
       ),
